@@ -13,5 +13,8 @@
   "devDependencies": {
     "parcel": "^2.16.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1"
   }
 }

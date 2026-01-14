@@ -1,8 +1,12 @@
+
+
+
 /**
  * Representa um chamado de suporte aberto por um solicitante.
  * Contém o status atual (atendido ou não), o nome do solicitante e a descrição do problema.
  */
 export class Chamado{
+    private id:string
     status:boolean;
     solicitante:string;
     descricao:string;
@@ -13,10 +17,11 @@ export class Chamado{
      * @param solicitante nome da pessoa que abriu o chamado
      * @param descricao descrição do problema reportado
      */
-    constructor(status:boolean,solicitante:string,descricao:string){
+    constructor(status:boolean,solicitante:string,descricao:string,id:string){
         this.status = status;
         this.solicitante = solicitante;
         this.descricao = descricao;
+        this.id = id;
     }
 
     /**
@@ -25,5 +30,8 @@ export class Chamado{
      */
     setStatus(novo:boolean){
         this.status = novo;
+    }
+    getId():string{
+        return this.id;
     }
 }

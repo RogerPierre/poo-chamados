@@ -29,7 +29,15 @@ export class TextCallUI implements ICallUI{
             switch(op){
                 case 1:
                     let nome : string = prompt('Digite seu nome')!;
+                    if(nome===null || nome.trim()===''){
+                        alert('Nome inválido');
+                        break;
+                    }
                     let descricao : string = prompt('Digite a descrição do problema')!;
+                    if(descricao===null || descricao.trim()===''){
+                        alert('Descrição inválida');
+                        break;
+                    }
                     let deuCerto : boolean = this.callController.abrirChamado(nome,descricao);
                     if(deuCerto){
                         alert('Chamado cadastrado');
@@ -38,8 +46,23 @@ export class TextCallUI implements ICallUI{
                     }
                     break;
                 case 2:
+                    this.callController.listarChamado().forEach(chamado=>{
+                        alert(`\nSolicitante: ${chamado.solicitante}\nDescrição: ${chamado.descricao}\nStatus: ${chamado.status?'Atendido':'Pendente'}`);
+                    });
                     break;
                 case 3:
+                    nome= prompt('Digite o nome de usuario do chamado a ser marcado como concluído')!;
+                    if(nome===null || nome.trim()===''){
+                        alert('Nome inválido');
+                        break;
+                    }
+                    let chamadoParaMarcar = this.callController.listarChamado().find(chamado=>chamado.solicitante===nome);
+                    if(chamadoParaMarcar){
+                        this.callController.marcarComoAtendido(chamadoParaMarcar);
+                        alert('Chamado marcado como atendido');
+                    }else{
+                        alert('Chamado não encontrado');
+                    }
                     break;
                 case 0:
                     break;

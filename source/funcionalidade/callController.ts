@@ -1,7 +1,6 @@
 import { Chamado } from "../modelo/chamado";
 import { ICallRepository } from "../modelo/iCallRepository";
 import { ICallController } from "./iCallController";
-
 /**
  * Controlador responsável pelas regras de negócio dos Chamados.
  * Interage com o repositório para criar, listar e marcar chamados como atendidos.
@@ -25,8 +24,7 @@ export class CallController implements ICallController{
      * @returns true se o repositório persistir com sucesso, caso contrário false
      */
     abrirChamado(nome: string, descricao: string): boolean {
-        let novoChamado : Chamado;
-        novoChamado = new Chamado(false,nome,descricao);
+        let novoChamado : Chamado= new Chamado(false,nome,descricao,Math.random().toString(36).substring(2, 15));
         return this.callRepository.criarNovoChamado(novoChamado);
     }
 
